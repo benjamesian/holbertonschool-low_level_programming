@@ -1,5 +1,11 @@
 #include "holberton.h"
 
+/**
+ * print_times_table - Print times tables up to 15
+ * @n: Size of times table to be printed
+ *
+ * Description: Print times table up to 15, no negative multiplicands
+ */
 void print_times_table(int n)
 {
 	int i, j, h, t, o, prod;
