@@ -5,6 +5,7 @@
  * main - entry point
  *
  * Description: Classic FizzBuzz
+ * Return: 0 (Success)
  */
 int main(void)
 {
