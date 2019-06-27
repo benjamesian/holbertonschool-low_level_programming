@@ -3,6 +3,8 @@
 
 /**
  * main - entry point
+ *
+ * Description: Classic FizzBuzz
  */
 int main(void)
 {
