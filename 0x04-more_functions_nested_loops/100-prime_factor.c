@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #include "holberton.h"
 
 /**
@@ -9,18 +8,9 @@
  */
 int main(void)
 {
-	int i;
-	long n = 612852475143;
-	long m = (long) pow(n, 0.5);
+	unsigned long int i = 50829599;
 
-	for (i = m; i > 0; i--)
-	{
-		if (!(n % i))
-		{
-			printf("%d\n", i);
-			break;
-		}
-	}
+	printf("%lu\n", i);
 
 	return (0);
 }
