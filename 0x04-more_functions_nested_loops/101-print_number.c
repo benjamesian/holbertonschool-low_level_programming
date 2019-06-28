@@ -6,7 +6,9 @@
  */
 void print_number(int n)
 {
-	int m, l;
+	int m, l, is_little;
+
+	is_little = (-n == n);
 
 	if (n < 0)
 	{
@@ -30,8 +32,14 @@ void print_number(int n)
 	m = n;
 	while (l)
 	{
-		if (m / l)
-			_putchar('0' + (m / l) % 10);
+		int q = m / l;
+		if (q)
+		{
+			if (!(q / 10) && is_little)
+				_putchar('0' + (q % 10) + 1);
+			else
+				_putchar('0' + q % 10);
+		}
 		l /= 10;
 	}
 }
