@@ -34,6 +34,7 @@ void print_number(int n)
 	while (l)
 	{
 		int q = m / l;
+
 		if (q)
 		{
 			if (is_smallest && !(l / 10))
