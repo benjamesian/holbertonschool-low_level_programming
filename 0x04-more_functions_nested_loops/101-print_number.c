@@ -6,12 +6,11 @@
  */
 void print_number(int n)
 {
-	int m, l, is_little;
+	int m, l, is_smallest;
 
-	is_little = (-n == n);
-	if (is_little)
+	is_smallest = (n != 0 && -n == n);
+	if (is_smallest)
 		n += 1;
-
 	if (n < 0)
 	{
 		_putchar('-');
@@ -25,7 +24,7 @@ void print_number(int n)
 
 	m = n;
 	l = 1;
-	while (m)
+	while (m / 10)
 	{
 		m /= 10;
 		l *= 10;
@@ -37,7 +36,7 @@ void print_number(int n)
 		int q = m / l;
 		if (q)
 		{
-			if (!(q / 10) && is_little)
+			if (is_smallest && !(l / 10))
 				_putchar('0' + (q % 10) + 1);
 			else
 				_putchar('0' + q % 10);
