@@ -6,15 +6,11 @@
  */
 void print_number(int n)
 {
-	int m, l, is_smallest, last;
+	int m, l, is_smallest;
 
 	is_smallest = (n != 0 && -n == n);
 	if (is_smallest)
-	{
-		last = -(n % 10);
-		n /= 10;
-	}
-
+		n += 1;
 	if (n < 0)
 	{
 		_putchar('-');
@@ -41,10 +37,11 @@ void print_number(int n)
 
 		if (q)
 		{
-			_putchar('0' + q % 10);
+			if (is_smallest && !(l / 10))
+				_putchar('0' + (q % 10) + 1);
+			else
+				_putchar('0' + q % 10);
 		}
 		l /= 10;
 	}
-	if (is_smallest)
-		_putchar('0' + last);
 }
