@@ -9,6 +9,8 @@ void print_number(int n)
 	int m, l, is_little;
 
 	is_little = (-n == n);
+	if (is_little)
+		n += 1;
 
 	if (n < 0)
 	{
