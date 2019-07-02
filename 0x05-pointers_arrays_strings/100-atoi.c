@@ -9,7 +9,7 @@
 int _atoi(char *s)
 {
 	int i, t, is_neg;
-	unsigned int num, to_add;
+	unsigned int num;
 	int found_number = -1;
 
 	is_neg = 0;
@@ -24,20 +24,19 @@ int _atoi(char *s)
 		else if (found_number == -1)
 			found_number = i;
 	}
-	i -= found_number;
-
+/*
+ *	i -= found_number;
+ */
 	num = 0;
 	t = 1;
 	if (found_number > -1)
 	{
-		while (i)
+		while (found_number - i)
 		{
-			to_add = (s[found_number + i - 1] - '0') * t;
-
-			num += to_add;
+			num = num * 10 + s[found_number] - '0';
 			if (num > (unsigned int) INT_MAX)
 				return ((is_neg % 2) ? INT_MIN : INT_MAX);
-			i--;
+			found_number++;
 			t *= 10;
 		}
 	}
