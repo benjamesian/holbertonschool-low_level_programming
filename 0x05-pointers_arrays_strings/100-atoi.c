@@ -31,7 +31,8 @@ int _atoi(char *s)
 	{
 		while (i)
 		{
-			if (num + (s[found_number + i - 1] - '0') * t < num)
+			int to_add = (s[found_number + i - 1] - '0') * t;
+			if (to_add > 0 && num > INT_MAX - to_add)
 				return ((is_neg % 2) ? INT_MIN : INT_MAX);
 
 			num += (s[found_number + i - 1] - '0') * t;
