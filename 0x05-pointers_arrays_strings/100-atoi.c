@@ -8,7 +8,7 @@
  */
 int _atoi(char *s)
 {
-	int i, t, is_neg;
+	int i, is_neg;
 	unsigned int num;
 	int found_number = -1;
 
