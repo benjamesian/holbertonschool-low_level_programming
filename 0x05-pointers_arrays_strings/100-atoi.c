@@ -37,7 +37,12 @@ int _atoi(char *s)
 		{
 			num += (s[found_number + num_len - 1] - '0') * t;
 			if (num < 0)
-				return (-1);
+			{
+				if (num - 1 > 0)
+					return (num);
+				else
+					return (-1);
+			}
 			num_len--;
 			t *= 10;
 		}
