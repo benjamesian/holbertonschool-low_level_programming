@@ -31,9 +31,13 @@ int _atoi(char *s)
 	t = 1;
 	if (found_number > -1)
 	{
+		if (num_len > 10) /* INT_MAX len */
+			return (-1);
 		while (num_len)
 		{
 			num += (s[found_number + num_len - 1] - '0') * t;
+			if (num < 0)
+				return (-1);
 			num_len--;
 			t *= 10;
 		}
