@@ -1,5 +1,9 @@
 #include "holberton.h"
 
+/**
+ * puts2 - Write every other letter in a string to stdout
+ * @str: A string
+ */
 void puts2(char *str)
 {
 	int i;

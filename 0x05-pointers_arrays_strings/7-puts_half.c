@@ -1,5 +1,9 @@
 #include "holberton.h"
 
+/**
+ * puts_half - Write the second half of a string to stdout
+ * @str: A string
+ */
 void puts_half(char *str)
 {
 	int len, i;

@@ -1,9 +1,15 @@
+/**
+ * _atoi - Convert a string to an integer
+ * @s: A string
+ *
+ * Return: An integer found in a string or 0
+ */
 int _atoi(char *s)
 {
-	int i, j, n, t, is_neg;
+	int i, num_len, num, t, is_neg;
 	int found_number = -1;
 
-	j = 0;
+	num_len = 0;
 	is_neg = 0;
 	for (i = 0; s[i] != '\0'; i++)
 	{
@@ -11,29 +17,27 @@ int _atoi(char *s)
 		{
 			if (found_number > -1)
 				break;
-			else
-				is_neg += (s[i] == '-');
+			is_neg += (s[i] == '-');
 		}
-
-		j++;
-		if (found_number == -1 && s[i] >= '0' && s[i] <= '9')
+		else if (found_number == -1)
 		{
 			found_number = i;
-			j = 0;
+			num_len = 0;
 		}
+		num_len++;
 	}
 
-	n = 0;
+	num = 0;
 	t = 1;
 	if (found_number > -1)
 	{
-		while (j + 1)
+		while (num_len)
 		{
-			n += (s[found_number + j] - '0') * t;
-			j--;
+			num += (s[found_number + num_len - 1] - '0') * t;
+			num_len--;
 			t *= 10;
 		}
 	}
 
-	return (is_neg % 2) ? -n : n;
+	return ((is_neg % 2) ? -num : num);
 }

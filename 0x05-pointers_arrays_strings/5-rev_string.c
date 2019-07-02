@@ -1,3 +1,7 @@
+/**
+ * rev_string - Reverse a string in place
+ * @s: A string
+ */
 void rev_string(char *s)
 {
 	char temp;

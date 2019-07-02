@@ -1,5 +1,9 @@
 #include "holberton.h"
 
+/**
+ * print_rev - Print a string backwards
+ * @s: A string
+ */
 void print_rev(char *s)
 {
 	int i;

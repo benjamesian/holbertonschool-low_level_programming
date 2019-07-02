@@ -1,5 +1,9 @@
 #include "holberton.h"
 
+/**
+ * _puts - Write a string to stdout
+ * @str: A string
+ */
 void _puts(char *str)
 {
 	int l;
