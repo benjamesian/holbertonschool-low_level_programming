@@ -6,10 +6,9 @@
  */
 int _atoi(char *s)
 {
-	int i, num_len, num, t, is_neg;
+	int i, num, t, is_neg;
 	int found_number = -1;
 
-	num_len = 0;
 	is_neg = 0;
 	for (i = 0; s[i] != '\0'; i++)
 	{
@@ -20,22 +19,19 @@ int _atoi(char *s)
 			is_neg += (s[i] == '-');
 		}
 		else if (found_number == -1)
-		{
 			found_number = i;
-			num_len = 0;
-		}
-		num_len++;
 	}
+	i -= found_number;
 
 	num = 0;
 	t = 1;
 	if (found_number > -1)
 	{
-		if (num_len > 10) /* INT_MAX len */
+		if (i > 10) /* INT_MAX len */
 			return (-1);
-		while (num_len)
+		while (i)
 		{
-			num += (s[found_number + num_len - 1] - '0') * t;
+			num += (s[found_number + i - 1] - '0') * t;
 			if (num < 0)
 			{
 				if (num - 1 > 0)
@@ -43,7 +39,7 @@ int _atoi(char *s)
 				else
 					return (-1);
 			}
-			num_len--;
+			i--;
 			t *= 10;
 		}
 	}
