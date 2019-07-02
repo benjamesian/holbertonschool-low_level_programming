@@ -24,20 +24,18 @@ int _atoi(char *s)
 		else if (found_number == -1)
 			found_number = i;
 	}
-/*
- *	i -= found_number;
- */
+
 	num = 0;
-	t = 1;
 	if (found_number > -1)
 	{
 		while (found_number - i)
 		{
+			if (INT_MAX / 10 < num)
+				return ((is_neg % 2) ? INT_MIN : INT_MAX);
 			num = num * 10 + s[found_number] - '0';
 			if (num > (unsigned int) INT_MAX)
 				return ((is_neg % 2) ? INT_MIN : INT_MAX);
 			found_number++;
-			t *= 10;
 		}
 	}
 
