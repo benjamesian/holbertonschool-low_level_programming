@@ -8,7 +8,7 @@
  */
 int _atoi(char *s)
 {
-	int i, num, t, is_neg;
+	int i, num, t, is_neg, to_add;
 	int found_number = -1;
 
 	is_neg = 0;
@@ -31,7 +31,7 @@ int _atoi(char *s)
 	{
 		while (i)
 		{
-			int to_add = (s[found_number + i - 1] - '0') * t;
+			to_add = (s[found_number + i - 1] - '0') * t;
 			if (to_add > 0 && num > INT_MAX - to_add)
 				return ((is_neg % 2) ? INT_MIN : INT_MAX);
 
