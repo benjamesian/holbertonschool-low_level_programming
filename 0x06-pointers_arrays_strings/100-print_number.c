@@ -22,7 +22,7 @@ void print_number(int n)
 		is_int_min = (n * -1 < 0);
 		if (is_int_min)
 		{
-			int_min_last = n % 10;
+			int_min_last = -(n % 10);
 			n /= 10;
 		}
 		n *= -1;
