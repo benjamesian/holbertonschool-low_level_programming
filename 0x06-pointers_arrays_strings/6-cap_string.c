@@ -8,7 +8,7 @@ char is_sep(char);
  */
 char *cap_string(char *n)
 {
-	char make_cap = 0;
+	char make_cap = 1;
 	char *m = n;
 
 	while (1)
