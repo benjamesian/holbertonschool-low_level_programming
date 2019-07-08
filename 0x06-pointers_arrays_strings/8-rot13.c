@@ -6,14 +6,17 @@
  */
 char *rot13(char *s)
 {
+	char w;
 	char *c = s;
+	int l, u;
 
 	while (*s)
 	{
-		if (*s >= 'a' && *s <= 'z')
-			*s = (((*s - 'a') + 13) % 26) + 'a';
-		else if (*s >= 'A' && *s <= 'Z')
-			*s = (((*s - 'A') + 13) % 26) + 'A';
+		l = (*s >= 'a' && *s <= 'z');
+		u = (*s >= 'A' && *s <= 'Z');
+		w = l * 'a' + u * 'A';
+		if (w)
+			*s = (((*s - w) + 13) % 26) + w;
 		s++;
 	}
 
