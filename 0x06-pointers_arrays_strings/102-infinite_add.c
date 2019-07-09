@@ -54,6 +54,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	r[l3] = '\0';
 
 	rev_arr(r, l3);
+	if (*r == '0')
+		r++;
 
 	if (l3 >= size_r)
 		return (0);
