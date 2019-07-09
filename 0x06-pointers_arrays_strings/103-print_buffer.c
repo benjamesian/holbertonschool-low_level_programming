@@ -37,11 +37,12 @@ void print_10_hex(char *b, int size)
 	if (size > 10)
 		size = 10;
 	i = size;
-	while (i--)
+	while (i)
 	{
 		printf("%02x", *(b + size - i));
-		if (!((size - i) % 2))
+		if ((size - i) % 2)
 			putchar(' ');
+		i--;
 	}
 
 	while (size < 10)
