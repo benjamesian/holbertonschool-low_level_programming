@@ -36,7 +36,7 @@ int palindrome_helper(char *s, int i, int j)
 }
 
 /**
- * get_end: get length of a string
+ * get_end - get length of a string
  * @s: string
  * @i: length counter
  *
