@@ -8,7 +8,7 @@ int _sqrt_helper(int, int);
  */
 int _sqrt_recursion(int n)
 {
-	return _sqrt_helper(n, 0);
+	return (_sqrt_helper(n, 0));
 }
 
 /**
@@ -27,5 +27,5 @@ int _sqrt_helper(int n, int m)
 	else if (prod > n)
 		return (-1);
 
-	return _sqrt_helper(n, m + 1);
+	return (_sqrt_helper(n, m + 1));
 }
