@@ -1,7 +1,7 @@
 int is_prime_helper(int, int);
 
 /**
- * is_prime_numer - Check if an integer is a prime
+ * is_prime_number - Check if an integer is a prime
  * @n: an integer
  *
  * Return: 1 if n is prime, else 0
