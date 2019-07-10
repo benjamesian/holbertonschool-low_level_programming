@@ -1,4 +1,5 @@
 int palindrome_helper(char *, int, int);
+int get_end(char *, int);
 
 /**
  * is_palindrome - check if a word is a palindrome
@@ -13,8 +14,7 @@ int is_palindrome(char *s)
 	if (!(*s))
 		return (1);
 
-	for (i = 0; s[i]; i++)
-		;
+	i = get_end(s, 0);
 
 	return (palindrome_helper(s, 0, i - 1));
 }
@@ -33,4 +33,19 @@ int palindrome_helper(char *s, int i, int j)
 		return (1);
 
 	return ((s[i] == s[j]) && palindrome_helper(s, ++i, --j));
+}
+
+/**
+ * get_end: get length of a string
+ * @s: string
+ * @i: length counter
+ *
+ * Return: length of s
+ */
+int get_end(char *s, int i)
+{
+	if (!(*s))
+		return (i);
+
+	return (get_end(++s, i + 1));
 }
