@@ -11,7 +11,8 @@
  */
 int main(int argc, char *argv[])
 {
-	int i, sum;
+	unsigned int sum;
+	int i;
 
 	sum = 0;
 	while (argc-- > 1)
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
 		sum += atoi(argv[argc]);
 	}
 
-	printf("%d\n", sum);
+	printf("%u\n", sum);
 
 	return (0);
 }
