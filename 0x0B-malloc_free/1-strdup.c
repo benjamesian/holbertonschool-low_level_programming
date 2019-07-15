@@ -12,6 +12,9 @@ char *_strdup(char *str)
 	char *buffer = NULL;
 	int i = 0;
 
+	if (!str)
+		return (NULL);
+
 	while (str[i++])
 		;
 
@@ -21,9 +24,8 @@ char *_strdup(char *str)
 
 	tmp = buffer;
 
-	if (buffer)
-		while ((*buffer++ = *str++))
-			;
+	while ((*buffer++ = *str++))
+		;
 
 	return (tmp);
 }
