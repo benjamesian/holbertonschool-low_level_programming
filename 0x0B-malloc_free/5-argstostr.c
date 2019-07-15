@@ -22,7 +22,7 @@ char *argstostr(int ac, char **av)
 	while (i--)
 		len += _strlen(av[i]);
 
-	buffer = malloc(len * sizeof(*buffer));
+	buffer = malloc(1 + (len + ac) * sizeof(*buffer));
 	if (!buffer)
 		return (NULL);
 
@@ -53,5 +53,5 @@ int _strlen(char *str)
 	while (*str++)
 		i++;
 
-	return (i);
+	return (i - 1);
 }
