@@ -14,7 +14,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	unsigned char *stmp, *dtmp;
 	unsigned int mem_to_cpy;
 
-	if (new_size == old_size)
+	if (ptr && new_size == old_size)
 		return (ptr);
 
 	buffer = malloc(new_size);
@@ -25,8 +25,9 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	stmp = ptr;
 	dtmp = buffer;
-	while (mem_to_cpy--)
-		*dtmp++ = *stmp++;
+	if (ptr)
+		while (mem_to_cpy--)
+			*dtmp++ = *stmp++;
 
 	free(ptr);
 
