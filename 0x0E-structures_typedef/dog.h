@@ -3,6 +3,12 @@
 
 void _putchar(char);
 
+/**
+ * struct dog - describes a dog
+ * @name: name of dog
+ * @age: age of dog
+ * @owner: name of owner of dog
+ */
 struct dog
 {
 	char *name;
