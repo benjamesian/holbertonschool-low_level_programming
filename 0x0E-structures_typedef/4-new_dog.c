@@ -26,6 +26,12 @@ dog_t *new_dog(char *name, float age, char *owner)
 	return (d);
 }
 
+/**
+ * _strdup - duplicate a string on the heap
+ * @s: string to duplicate
+ *
+ * Return: pointer to the duplicated string
+ */
 char *_strdup(char *s)
 {
 	char *buffer, *tmp;
