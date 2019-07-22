@@ -53,6 +53,7 @@ char *_strdup(char *s)
 
 	for (i = 0; s[i]; i++)
 		;
+	i++;
 
 	buffer = malloc(sizeof(*buffer) * i);
 	if (buffer == NULL)
