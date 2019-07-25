@@ -32,12 +32,13 @@ int main(int argc, char *argv[])
  *	}
  */
 
-	if (!(strcmp("%", argv[2]) && strcmp("/", argv[2])) && !atoi(argv[3]))
-	{
-		puts("Error");
-		exit(100);
-	}
-
+/*
+ *	if (!(strcmp("%", argv[2]) && strcmp("/", argv[2])) && !atoi(argv[3]))
+ *	{
+ *		puts("Error");
+ *		exit(100);
+ *	}
+ */
 
 	printf("%d\n", get_op_func(argv[2])(atoi(argv[1]), atoi(argv[3])));
 
