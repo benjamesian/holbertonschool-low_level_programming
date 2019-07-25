@@ -11,8 +11,32 @@
  */
 int main(int argc, char *argv[])
 {
+	int op_len;
+	char op;
+
+	for (op_len = 0; argv[op_len]; op_len++)
+		;
+
 	if (argc != 4)
-		return (-1);
+	{
+		puts("Error");
+		exit(98);
+	}
+
+	op = argv[2][0];
+	if (op_len != 1 ||
+	    !(op == '+' || op == '-' || op == '*' || op == '/' || op == '%'))
+	{
+		puts("Error");
+		exit(99);
+	}
+
+	if (!(strcmp("%", argv[2]) && strcmp("/", argv[2])) && !atoi(argv[3]))
+	{
+		puts("Error");
+		exit(100);
+	}
+
 
 	printf("%d\n", get_op_func(argv[2])(atoi(argv[1]), atoi(argv[3])));
 
