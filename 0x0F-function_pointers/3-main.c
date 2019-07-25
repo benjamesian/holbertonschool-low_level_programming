@@ -20,8 +20,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	for (op_len = 0; argv[2][op_len]; op_len++)
-		;
+	op_len = strlen(argv[2]);
 
 	op = argv[2][0];
 	if (op_len != 1 ||
