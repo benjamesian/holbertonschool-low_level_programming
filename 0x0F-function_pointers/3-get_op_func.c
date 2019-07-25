@@ -1,6 +1,12 @@
 #include <string.h>
 #include "3-calc.h"
 
+/**
+ * get_op_func - convert symbol into function
+ * @s: string which may correspoind to function
+ *
+ * Return: function associated with s
+ */
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
@@ -17,7 +23,7 @@ int (*get_op_func(char *s))(int, int)
 	while (ops[i].op)
 	{
 		if (!strcmp(ops[i].op, s))
-			return ops[i].f;
+			return (ops[i].f);
 		i++;
 	}
 
