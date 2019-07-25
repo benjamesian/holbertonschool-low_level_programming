@@ -19,20 +19,17 @@ int main(int argc, char *argv[])
 	}
 
 	op = argv[2][0];
-	if (!(op == '+' || op == '-' || op == '*' || op == '/' || op == '%')
-	    || argv[2] != '\0')
+	if (!(op == '+' || op == '-' || op == '*' || op == '/' || op == '%'))
 	{
 		puts("Error");
 		exit(99);
 	}
 
-/*
- *	if (!(strcmp("%", argv[2]) && strcmp("/", argv[2])) && !atoi(argv[3]))
- *	{
- *		puts("Error");
- *		exit(100);
- *	}
- */
+	if ((op == '/' || op == '%') && atoi(argv[3]) == 0)
+	{
+		puts("Error");
+		exit(100);
+	 }
 
 	printf("%d\n", get_op_func(argv[2])(atoi(argv[1]), atoi(argv[3])));
 
