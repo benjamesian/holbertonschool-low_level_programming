@@ -14,14 +14,14 @@ int main(int argc, char *argv[])
 	int op_len;
 	char op;
 
-	for (op_len = 0; argv[op_len]; op_len++)
-		;
-
 	if (argc != 4)
 	{
 		puts("Error");
 		exit(98);
 	}
+
+	for (op_len = 0; argv[2][op_len]; op_len++)
+		;
 
 	op = argv[2][0];
 	if (op_len != 1 ||
