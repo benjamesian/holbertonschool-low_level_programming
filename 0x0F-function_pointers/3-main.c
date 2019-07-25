@@ -10,7 +10,6 @@
  */
 int main(int argc, char *argv[])
 {
-	int op_len;
 	char op;
 
 	if (argc != 4)
@@ -19,10 +18,8 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	op_len = strlen(argv[2]);
 	op = argv[2][0];
-	if (op_len != 1 ||
-	    !(op == '+' || op == '-' || op == '*' || op == '/' || op == '%'))
+	if (!(op == '+' || op == '-' || op == '*' || op == '/' || op == '%'))
 	{
 		puts("Error");
 		exit(99);
