@@ -2,6 +2,8 @@
 #include <string.h>
 #include "lists.h"
 
+unsigned int _strlen(const char *);
+
 /**
  * add_node_end - add a new node to the end of a list_t list
  * @head: pointer to a pointer to the first element of the list
@@ -19,7 +21,7 @@ list_t *add_node_end(list_t **head, const char *str)
 
 	temp->next = NULL;
 	temp->str = strdup(str);
-	temp->len = strlen(str);
+	temp->len = _strlen(str);
 
 	p = *head;
 
@@ -33,4 +35,23 @@ list_t *add_node_end(list_t **head, const char *str)
 	}
 
 	return (temp);
+}
+
+/**
+ * _strlen - get length of a string
+ * @s: a string
+ *
+ * Return: length of the string
+ */
+unsigned int _strlen(const char *s)
+{
+	unsigned int i;
+
+	if (s)
+		for (i = 0; s[i]; i++)
+			;
+	else
+		return (0);
+
+	return (i);
 }
