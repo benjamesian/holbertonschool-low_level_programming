@@ -30,9 +30,8 @@ size_t print_listint_safe(const listint_t *head)
 		num_nodes++;
 	}
 
-/*
- *	_free_list(&seen_nodes);
- */
+	_free_list(&seen_nodes);
+
 	return (num_nodes);
 }
 
@@ -73,17 +72,15 @@ seen_t *add_node(seen_t **head, const listint_t *addr)
 	return (new);
 }
 
-/*
+/**
  * _free_list - free a linked list
  * @head: pointer to first element of the linked list
  */
-/*
- *void _free_list(seen_t **head)
- *{
- *	if (!head || !*head)
- *		return;
- *	_free_list(&((*head)->next));
- *	free(*head);
- *	*head = NULL;
- *}
- */
+void _free_list(seen_t **head)
+{
+	if (!head || !*head)
+		return;
+	_free_list(&((*head)->next));
+	free(*head);
+	*head = NULL;
+}
