@@ -4,8 +4,8 @@
 listint_t *get_loop_addr(listint_t *h, seen_t **seen_nodes);
 
 /**
- * free_listint_safe - print a listint
- * @h: pointer to first element in list
+ * find_listint_loop - print a listint
+ * @head: pointer to first element in list
  *
  * Return: number of nodes in the list
  */
