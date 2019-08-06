@@ -44,14 +44,11 @@ size_t print_listint_safe(const listint_t *head)
  */
 int already_seen(const listint_t *p, seen_t *ll)
 {
-	while (ll)
-	{
-		if (ll->addr == p)
-			return (1);
-		ll = ll->next;
-	}
-
-	return (0);
+	if (!ll)
+		return (0);
+	else if (ll->addr == p)
+		return (1);
+	return (already_seen(p, ll->next));
 }
 
 /**
