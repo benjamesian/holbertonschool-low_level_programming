@@ -30,8 +30,9 @@ size_t print_listint_safe(const listint_t *head)
 		num_nodes++;
 	}
 
-	_free_list(&seen_nodes);
-
+/*
+ *	_free_list(&seen_nodes);
+ */
 	return (num_nodes);
 }
 
