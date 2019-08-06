@@ -32,12 +32,15 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		else if ((*head)->next)
 		{
 			_p = (*head)->next;
-			(*head)->next = (_p) ? (*head)->next->next : NULL;
+			(*head)->next = (*head)->next->next;
 			free(_p);
 			*head = p;
 		}
 		else
+		{
+			*head = p;
 			return (-1);
+		}
 		return (1);
 	}
 
