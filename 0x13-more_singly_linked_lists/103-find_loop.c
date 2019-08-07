@@ -1,7 +1,4 @@
-#include <stdio.h>
 #include "lists.h"
-
-listint_t *get_loop_addr(listint_t *h, seen_t **seen_nodes);
 
 /**
  * find_listint_loop - print a listint
@@ -13,7 +10,7 @@ listint_t *find_listint_loop(listint_t *head)
 {
 	listint_t *t = head, *h = head;
 
-	while (*h && *h->next)
+	while (h && h->next)
 	{
 		h = h->next->next;
 		t = t->next;
