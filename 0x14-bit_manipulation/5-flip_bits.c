@@ -10,7 +10,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned int flip_counter = 0;
 	unsigned long dummy;
 
-	dummy = (n | m) & (~(n & m));
+	dummy = n ^ m;
 	while (dummy)
 	{
 		flip_counter += dummy & 1;
