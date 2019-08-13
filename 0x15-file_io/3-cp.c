@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	while (bytes_read == BUFSIZE)
 	{
 		bytes_read = read(fdf, buf, BUFSIZE);
-		if (write(fdt, buf, bytes_read) == -1)
+		if (bytes_read && write(fdt, buf, bytes_read) == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
