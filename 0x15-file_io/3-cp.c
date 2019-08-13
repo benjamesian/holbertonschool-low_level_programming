@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
 		bytes_read = read(fdf, buf, BUFSIZE);
 		if (bytes_read && write(fdt, buf, bytes_read) == -1)
 		{
+			close_file(fdf);
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
