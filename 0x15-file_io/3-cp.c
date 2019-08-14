@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	int fdf, fdt, bytes_read;
 	char buf[BUFSIZE];
 
-	check_args(ac);
+	check_args(argc);
 	fdf = open(argv[1], O_RDONLY);
 	if (fdf == -1)
 	{
