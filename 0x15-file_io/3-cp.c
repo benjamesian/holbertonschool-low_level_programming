@@ -67,9 +67,9 @@ int main(int argc, char *argv[])
 		}
 		if (write(fdt, buf, bytes_read) == -1)
 		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			close_file(fdf);
 			close_file(fdt);
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
 	}
