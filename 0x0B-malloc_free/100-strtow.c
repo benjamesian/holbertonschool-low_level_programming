@@ -20,8 +20,10 @@ char **strtow(char *str)
 		return (NULL);
 
 	nwords = count_seps(str, ' ');
+	if (!nwords)
+		return (NULL);
 	p = malloc((nwords + 1) * sizeof(*p));
-	if (!nwords || !p)
+	if (!p)
 		return (NULL);
 
 	tmp = p;
