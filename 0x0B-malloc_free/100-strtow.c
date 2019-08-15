@@ -65,8 +65,8 @@ int count_seps(char *str, char sep)
 	if (!*str)
 		return (0);
 
-	while (*str++ == sep)
-		;
+	while (*str == sep)
+		str++;
 
 	if (*str)
 	{
