@@ -11,7 +11,7 @@ int count_until(char *, char);
  */
 char **strtow(char *str)
 {
-	char **p, **tmp;
+	char **p, **tmp, **cpy;
 	char *pc;
 	int i;
 	int nwords = 0;
@@ -28,18 +28,23 @@ char **strtow(char *str)
 
 	while (*str)
 	{
-		while (*str++ == ' ')
-			;
-		str--;
+		while (*str == ' ')
+			str++;
 		if (!*str)
 			break;
 		i = count_until(str, ' ');
 		*p = malloc(i * sizeof(**p));
 		if (!*p)
+		{
+			cpy = tmp;
+			while (tmp != p)
+				free(*tmp++);
+			free(cpy);
 			return (NULL);
+		}
 		pc = *p;
-		while (*str != ' ' && (*pc++ = *str++))
-			;
+		while (*str && *str != ' ')
+			*pc++ = *str++;
 		*pc = '\0';
 		p++;
 	}
@@ -55,7 +60,7 @@ char **strtow(char *str)
  *
  * Return: number of words
  */
-int count_seps(char* str, char sep)
+int count_seps(char *str, char sep)
 {
 	if (!*str)
 		return (0);
@@ -83,8 +88,12 @@ int count_seps(char* str, char sep)
 int count_until(char *str, char stop)
 {
 	int i = 0;
-	while (*str++ != stop)
+
+	while (str && *str != stop)
+	{
+		str++;
 		i++;
+	}
 
 	return (i);
 }
