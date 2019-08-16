@@ -35,7 +35,7 @@ char **strtow(char *str)
 		if (!*str)
 			break;
 		i = count_until(str, ' ');
-		*p = malloc(i * sizeof(**p));
+		*p = malloc((i + 1) * sizeof(**p));
 		if (!*p)
 		{
 			cpy = tmp;
@@ -91,7 +91,7 @@ int count_until(char *str, char stop)
 {
 	int i = 0;
 
-	while (str && *str != stop)
+	while (str && *str && *str != stop)
 	{
 		str++;
 		i++;
