@@ -3,3 +3,5 @@ _putchar.c
 a.out
 *-main.c
 *#
+*.o
+*.cc
