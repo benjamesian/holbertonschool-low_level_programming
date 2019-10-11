@@ -10,6 +10,12 @@ void hash_table_print(const hash_table_t *ht)
 	hash_node_t *head;
 	int add_comma = 0;
 
+	if (!ht)
+	{
+		puts("");
+		return;
+	}
+
 	putchar('{');
 	for (index = 0; index < ht->size; index++)
 	{
