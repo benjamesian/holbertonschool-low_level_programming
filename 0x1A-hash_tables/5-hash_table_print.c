@@ -22,15 +22,16 @@ void hash_table_print(const hash_table_t *ht)
 		head = ht->array[index];
 		while (head)
 		{
-			if (add_comma)
+			if (add_comma == 1)
 				printf(", ");
-			add_comma = 0;
+			add_comma = 2;
 			printf("'%s': '%s'", head->key, head->value);
 			if (head->next)
 				printf(", ");
 			head = head->next;
 		}
-		add_comma = 1;
+		if (add_comma == 2)
+			add_comma = 1;
 	}
 	putchar('}');
 	putchar('\n');
