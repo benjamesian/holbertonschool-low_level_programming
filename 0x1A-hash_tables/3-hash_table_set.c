@@ -15,7 +15,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !*key || !value)
 		return (0);
-
 	index = key_index((const unsigned char *) key, ht->size);
 	p = ht->array[index];
 	while (p)
@@ -28,13 +27,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 		p = p->next;
 	}
-
 	new = malloc(sizeof(*new));
 	if (!new)
 		return (0);
-
 	head = &(ht->array[index]);
-
 	new->key = strdup(key);
 	if (!new->key)
 	{
