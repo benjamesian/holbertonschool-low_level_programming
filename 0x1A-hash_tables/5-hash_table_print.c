@@ -12,7 +12,7 @@ void hash_table_print(const hash_table_t *ht)
 
 	if (!ht)
 	{
-		puts("");
+		putchar('\n');
 		return;
 	}
 
@@ -24,12 +24,13 @@ void hash_table_print(const hash_table_t *ht)
 		{
 			if (add_comma)
 				printf(", ");
-			add_comma = 1;
+			add_comma = 0;
 			printf("'%s': '%s'", head->key, head->value);
 			if (head->next)
 				printf(", ");
 			head = head->next;
 		}
+		add_comma = 1;
 	}
 	putchar('}');
 	putchar('\n');
