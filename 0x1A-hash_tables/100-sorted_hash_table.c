@@ -166,7 +166,6 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
  */
 void shash_table_print(const shash_table_t *ht)
 {
-	size_t index;
 	shash_node_t *head;
 	int add_comma = 0;
 
@@ -194,7 +193,6 @@ void shash_table_print(const shash_table_t *ht)
  */
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	size_t index;
 	shash_node_t *head;
 	int add_comma = 0;
 
@@ -217,6 +215,27 @@ void shash_table_print_rev(const shash_table_t *ht)
 }
 
 /**
+ * free_arr - Free a linked list.
+ * @head: head of the linked list
+ */
+void free_arrs(shash_node_t *head)
+{
+	shash_node_t *p;
+
+	if (!head)
+		return;
+
+	while (head)
+	{
+		p = head;
+		head = head->next;
+		free(p->key);
+		free(p->value);
+		free(p);
+	}
+}
+
+/**
  * shash_table_delete - Free all memory used by a shash table.
  * @ht: shash table.
  */
@@ -225,7 +244,7 @@ void shash_table_delete(shash_table_t *ht)
 	size_t index;
 
 	for (index = 0; index < ht->size; index++)
-		free_arr(ht->array[index]);
+		free_arrs(ht->array[index]);
 	free(ht->array);
 	free(ht);
 }
