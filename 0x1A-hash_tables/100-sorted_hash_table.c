@@ -42,19 +42,18 @@ void insert_sorted(shash_table_t *ht, shash_node_t *node)
 {
 	shash_node_t *p;
 
+	node->sprev = NULL;
+	node->snext = NULL;
 	if (!ht->shead)
 	{
 		ht->shead = node;
 		ht->stail = node;
-		node->snext = NULL;
-		node->sprev = NULL;
 	}
 	else
 	{
 		if (strcmp(node->key, ht->shead->key) <= 0)
 		{
 			node->snext = ht->shead;
-			node->sprev = NULL;
 			ht->shead->sprev = node;
 			ht->shead = node;
 		}
@@ -76,7 +75,6 @@ void insert_sorted(shash_table_t *ht, shash_node_t *node)
 			if (!p->snext)
 			{
 				p->snext = node;
-				node->snext = NULL;
 				node->sprev = p;
 				ht->stail = node;
 			}
