@@ -186,7 +186,7 @@ void shash_table_print(const shash_table_t *ht)
 }
 
 /**
- * shash_table_print - Print the data stored in a shash table in reverse order.
+ * shash_table_print_rev - Print the data stored in a shash table in reverse order.
  * @ht: shash table
  */
 void shash_table_print_rev(const shash_table_t *ht)
@@ -213,7 +213,7 @@ void shash_table_print_rev(const shash_table_t *ht)
 }
 
 /**
- * free_arr - Free a linked list.
+ * free_arrs - Free a linked list.
  * @head: head of the linked list
  */
 void free_arrs(shash_node_t *head)
