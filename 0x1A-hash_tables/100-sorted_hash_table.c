@@ -24,8 +24,8 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 	ht->size = size;
 	ht->array = arr;
-    ht->shead = NULL;
-    ht->stail = NULL;
+	ht->shead = NULL;
+	ht->stail = NULL;
 
 	while (size--)
 		arr[size] = 0;
@@ -40,47 +40,48 @@ shash_table_t *shash_table_create(unsigned long int size)
  */
 void insert_sorted(shash_table_t *ht, shash_node_t *node)
 {
-    shash_node_t *p;
-    if (!ht->shead)
-    {
-        ht->shead = node;
-        ht->stail = node;
-        node->snext = NULL;
-        node->sprev = NULL;
-    }
-    else
-    {
-        if (strcmp(node->key, ht->shead->key) <= 0)
-        {
-            node->snext = ht->shead;
-            node->sprev = NULL;
-            ht->shead->sprev = node;
-            ht->shead = node;
-        }
-        else
-        {
-            p = ht->shead;
-            while (p && p->snext)
-            {
-                if (strcmp(node->key, p->snext->key) <= 0)
-                {
-                    node->snext = p->snext;
-                    p->snext->sprev = node;
-                    node->sprev = p;
-                    p->snext = node;
-                    break;
-                }
-                p = p->snext;
-            }
-            if (!p->snext)
-            {
-                p->snext = node;
-                node->snext = NULL;
-                node->sprev = p;
-                ht->stail = node;
-            }
-        }
-    }
+	shash_node_t *p;
+
+	if (!ht->shead)
+	{
+		ht->shead = node;
+		ht->stail = node;
+		node->snext = NULL;
+		node->sprev = NULL;
+	}
+	else
+	{
+		if (strcmp(node->key, ht->shead->key) <= 0)
+		{
+			node->snext = ht->shead;
+			node->sprev = NULL;
+			ht->shead->sprev = node;
+			ht->shead = node;
+		}
+		else
+		{
+			p = ht->shead;
+			while (p && p->snext)
+			{
+				if (strcmp(node->key, p->snext->key) <= 0)
+				{
+					node->snext = p->snext;
+					p->snext->sprev = node;
+					node->sprev = p;
+					p->snext = node;
+					break;
+				}
+				p = p->snext;
+			}
+			if (!p->snext)
+			{
+				p->snext = node;
+				node->snext = NULL;
+				node->sprev = p;
+				ht->stail = node;
+			}
+		}
+	}
 }
 
 /**
@@ -130,7 +131,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new->next = *head;
 
 	*head = new;
-    insert_sorted(ht, new);
+	insert_sorted(ht, new);
 
 	return (1);
 }
@@ -173,16 +174,16 @@ void shash_table_print(const shash_table_t *ht)
 		return;
 
 	putchar('{');
-    head = ht->shead;
-    while (head)
-    {
-        if (add_comma)
-            printf(", ");
-        else
-            add_comma = 1;
-        printf("'%s': '%s'", head->key, head->value);
-        head = head->snext;
-    }
+	head = ht->shead;
+	while (head)
+	{
+		if (add_comma)
+			printf(", ");
+		else
+			add_comma = 1;
+		printf("'%s': '%s'", head->key, head->value);
+		head = head->snext;
+	}
 	putchar('}');
 	putchar('\n');
 }
@@ -201,16 +202,16 @@ void shash_table_print_rev(const shash_table_t *ht)
 		return;
 
 	putchar('{');
-    head = ht->stail;
-    while (head)
-    {
-        if (add_comma)
-            printf(", ");
-        else
-            add_comma = 1;
-        printf("'%s': '%s'", head->key, head->value);
-        head = head->sprev;
-    }
+	head = ht->stail;
+	while (head)
+	{
+		if (add_comma)
+			printf(", ");
+		else
+			add_comma = 1;
+		printf("'%s': '%s'", head->key, head->value);
+		head = head->sprev;
+	}
 	putchar('}');
 	putchar('\n');
 }
@@ -225,7 +226,6 @@ void shash_table_delete(shash_table_t *ht)
 
 	for (index = 0; index < ht->size; index++)
 		free_arr(ht->array[index]);
-
 	free(ht->array);
 	free(ht);
 }
