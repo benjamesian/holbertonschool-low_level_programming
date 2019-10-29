@@ -61,7 +61,7 @@ size_t partition(int array[], size_t size)
 
 	for (j = 0; j < size - 1; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
 			if (i != j)
