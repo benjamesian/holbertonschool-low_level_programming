@@ -38,27 +38,21 @@ void gap_sort(int *array, size_t size, unsigned int gap)
 }
 
 /**
- * _shell_sort - recursive shell sort
- * @array: array to be sorted
- * @size: size of array
- * @gap: gap size
- */
-void _shell_sort(int *array, size_t size, unsigned int gap)
-{
-	if (gap >= size)
-		return;
-
-	_shell_sort(array, size, 3 * gap + 1);
-	gap_sort(array, size, gap);
-	print_array(array, size);
-}
-
-/**
- * shell_sort - initiate recursive shell sort
+ * shell_sort - shell sort
  * @array: array to be sorted
  * @size: size of array
  */
 void shell_sort(int *array, size_t size)
 {
-	_shell_sort(array, size, 1);
+	unsigned int gap = 1;
+
+	while (gap < size / 3)
+		gap = gap * 3 + 1;
+
+	while (gap >= 1)
+	{
+		gap_sort(array, size, gap);
+		gap = (gap - 1) / 3;
+		print_array(array, size);
+	}
 }
