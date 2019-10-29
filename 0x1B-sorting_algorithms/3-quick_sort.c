@@ -11,14 +11,10 @@ void quick_sort(int *array, size_t size)
 {
 	size_t pivot;
 
-	if (!array)
+	if (!array || size < 2)
 		return;
 
 	print_sort(array, size, 1);
-
-	/*only sort if it could make a difference*/
-	if (size < 2)
-		return;
 
 	/* partition and get pivot index */
 	pivot = partition(array, size);
