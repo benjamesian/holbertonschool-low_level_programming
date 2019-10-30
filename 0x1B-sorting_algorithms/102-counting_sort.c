@@ -51,6 +51,8 @@ void counting_sort(int *array, size_t size)
 	for (j = 1; j < max + 1; j++)
 		temp[j] += temp[j - 1];
 
+	print_array(temp, max + 1);
+
 	for (i = 0; i < size; i++)
 	{
 		temp[array[i]]--;
