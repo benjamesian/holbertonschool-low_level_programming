@@ -48,7 +48,6 @@ void _merge_sort(int *array, int *temp, size_t size)
 void merge_sort(int *array, size_t size)
 {
 	int *temp;
-	size_t i;
 
 	if (!array || size < 2)
 		return;
