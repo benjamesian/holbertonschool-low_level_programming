@@ -8,8 +8,6 @@ def island_perimeter(grid):
     for i, row in enumerate(grid):
         for j, entry in enumerate(row):
             if entry == 1:
-                perimeter += (i == 0 or grid[i - 1][j] == 0)
-                perimeter += (i == len(row) - 1 or grid[i + 1][j] == 0)
-                perimeter += (j == 0 or grid[i][j - 1] == 0)
-                perimeter += (j == len(grid) - 1 or grid[i][j + 1] == 0)
+                perimeter += 4 - sum(
+                    [grid[i+1][j], grid[i-1][j], grid[i][j+1], grid[i][j-1]])
     return perimeter
