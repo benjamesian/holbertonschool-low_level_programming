@@ -7,8 +7,10 @@ RM=rm -f
 all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(OBJ): $(SRC)
-	$(CC) -c $?
+obj: $(SRC)
+	for f in $?; do \
+		$(CC) -c $f -o $f.o; \
+	done
 
 clean:
 	$(RM) *.~ *.swp $(NAME)
