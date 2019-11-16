@@ -13,13 +13,11 @@ obj: $(SRC)
 	done
 
 clean:
-	$(RM) *.~ *.swp $(NAME)
+	$(RM) *~ *.swp $(NAME)
 
 oclean:
-	$(RM) *.o
+	$(RM) $(OBJ)
 
-fclean:
-	$(RM) *~ $(NAME) *.o
+fclean: clean oclean
 
-re: oclean
-	gcc -c $(SRC)
+re: oclean all
