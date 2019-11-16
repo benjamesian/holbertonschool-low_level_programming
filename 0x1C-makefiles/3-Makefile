@@ -19,5 +19,5 @@ oclean:
 fclean:
 	$(RM) *~ $(NAME) *.o
 
-re:
+re: $(SRC)
 	gcc -c $(SRC)
