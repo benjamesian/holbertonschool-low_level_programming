@@ -32,7 +32,7 @@ size_t _binary_tree_height(const binary_tree_t *tree)
  * binary_tree_balance - Check if a binary tree is balanced.
  * @tree: tree to inspect
  *
- * Return: 1 if tree is balanced, else 0
+ * Return: balance factor of a binary tree
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
