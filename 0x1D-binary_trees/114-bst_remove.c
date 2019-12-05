@@ -100,9 +100,9 @@ bst_t *bst_remove(bst_t *root, int value)
 		if (node_to_replace == root)
 			root = next_node_in_order;
 		else if (is_left_child(node_to_replace))
-			node_to_replace->parent->left = next_node_in_order;
-		else if (node_to_replace->parent)
-			node_to_replace->parent->right = next_node_in_order;
+			next_node_in_order->parent->left = next_node_in_order;
+		else
+			next_node_in_order->parent->right = next_node_in_order;
 	}
 	free(node_to_replace);
 	root->parent = NULL;
