@@ -30,7 +30,8 @@ int _binary_tree_is_bst(const binary_tree_t *node, const binary_tree_t *prev)
 			|| (node->right && node->right->n < prev->n))
 			return (0);
 	}
-	return (_binary_tree_is_bst(node->left, prev) && _binary_tree_is_bst(node->right, prev));
+	return (_binary_tree_is_bst(node->left, prev)
+		&& _binary_tree_is_bst(node->right, prev));
 }
 
 /**
@@ -44,5 +45,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (!tree)
 		return (1);
 
-	return (_binary_tree_is_bst(tree, tree) && _binary_tree_is_bst(tree->left, tree->left) && _binary_tree_is_bst(tree->right, tree->right));
+	return (_binary_tree_is_bst(tree, tree)
+		&& _binary_tree_is_bst(tree->left, tree->left)
+		&& _binary_tree_is_bst(tree->right, tree->right));
 }
