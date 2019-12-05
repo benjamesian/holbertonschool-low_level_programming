@@ -59,21 +59,6 @@ void pq_free(pq_t *pq)
 	free(pq);
 }
 
-
-/**
- * pq_apply - apply a function to all nodes in a priority queue in order
- * @pq: the queue
- * @func: function to apply to data of each node
- */
-void pq_apply(pq_t *pq, void (*func)(int))
-{
-	while (pq)
-	{
-		func(pq->value);
-		pq = pq->next;
-	}
-}
-
 /**
  * build_pq - build a priority queue for easy level order traversal
  * @tree: binary tree to traverse
@@ -98,6 +83,9 @@ void build_pq(const binary_tree_t *tree, pq_t **pq, size_t priority)
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	pq_t *pq = NULL;
+
+	if (!tree)
+		return (0);
 
 	build_pq(tree, &pq, 1);
 
