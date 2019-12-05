@@ -105,5 +105,6 @@ bst_t *bst_remove(bst_t *root, int value)
 			next_node_in_order->parent->right = next_node_in_order;
 	}
 	free(node_to_replace);
+	root->parent = NULL;
 	return (root);
 }
