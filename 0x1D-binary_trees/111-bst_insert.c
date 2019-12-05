@@ -1,24 +1,25 @@
 #include "binary_trees.h"
 
+/**
+ * bst_insert - insert a node into a bst
+ * @tree: tree to insert node into
+ * @value: value for new node to hold
+ *
+ * Return: pointer to new node
+ */
 bst_t *bst_insert(bst_t **tree, int value)
 {
 	bst_t *new, *p;
+
 	if (!tree)
 		return (NULL);
-
-	new = malloc(sizeof(*new));
+	new = binary_tree_node(NULL, value);
 	if (!new)
 		return (NULL);
-	new->n = value;
-	new->left = NULL;
-	new->right = NULL;
-	new->parent = NULL;
-
 	p = *tree;
 	if (!p)
 		*tree = new;
 	else
-	{
 		while (p)
 		{
 			if (value < p->n)
@@ -46,7 +47,5 @@ bst_t *bst_insert(bst_t **tree, int value)
 			else
 				return (NULL);
 		}
-	}
-
 	return (new);
 }
