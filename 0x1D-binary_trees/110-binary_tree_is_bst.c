@@ -14,24 +14,26 @@ int _binary_tree_is_bst(const binary_tree_t *node, const binary_tree_t *prev)
 
 	if (node->n == prev->n)
 	{
-		if ((node->left && node->left->n > prev->n)
-			|| (node->right && node->right->n < prev->n))
+		if ((node->left && node->left->n > node->n)
+			|| (node->right && node->right->n < node->n))
 			return (0);
+		return (_binary_tree_is_bst(node->left, prev)
+			&& _binary_tree_is_bst(node->right, prev));
 	}
 	else if (node->n < prev->n)
 	{
 		if ((node->left && node->left->n > prev->n)
 			|| (node->right && node->right->n > prev->n))
 			return (0);
+		return (_binary_tree_is_bst(node->right, prev));
 	}
 	else
 	{
 		if ((node->left && node->left->n < prev->n)
 			|| (node->right && node->right->n < prev->n))
 			return (0);
+		return (_binary_tree_is_bst(node->left, prev));
 	}
-	return (_binary_tree_is_bst(node->left, prev)
-		&& _binary_tree_is_bst(node->right, prev));
 }
 
 /**
