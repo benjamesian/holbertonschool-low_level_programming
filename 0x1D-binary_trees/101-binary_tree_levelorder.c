@@ -98,7 +98,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	pq_t *pq = NULL;
 
-	if (!tree)
+	if (!tree || !func)
 		return;
 
 	build_pq(tree, &pq, 1);
