@@ -43,7 +43,7 @@ int _binary_tree_is_bst(const binary_tree_t *node, const binary_tree_t *prev)
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (!tree)
-		return (1);
+		return (0);
 
 	return (_binary_tree_is_bst(tree, tree)
 		&& _binary_tree_is_bst(tree->left, tree->left)
