@@ -82,24 +82,25 @@ void build_pq(const binary_tree_t *tree, pq_t **pq, size_t priority)
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	pq_t *pq = NULL;
+	pq_t *pq = NULL, *p;
 
 	if (!tree)
 		return (0);
 
 	build_pq(tree, &pq, 1);
 
+	p = pq;
 	while (pq && pq->next)
 	{
 		if (pq->next->priority - pq->priority > 1)
 		{
-			pq_free(pq);
+			pq_free(p);
 			return (0);
 		}
 
 		pq = pq->next;
 	}
 
-	pq_free(pq);
+	pq_free(p);
 	return (1);
 }
