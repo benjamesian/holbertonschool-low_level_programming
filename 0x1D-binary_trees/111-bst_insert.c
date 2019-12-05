@@ -24,28 +24,29 @@ bst_t *bst_insert(bst_t **tree, int value)
 		{
 			if (value < p->n)
 			{
-				if (p->left)
-					p = p->left;
-				else
+				if (!p->left)
 				{
 					p->left = new;
 					new->parent = p;
 					break;
 				}
+				p = p->left;
 			}
 			else if (value > p->n)
 			{
-				if (p->right)
-					p = p->right;
-				else
+				if (!p->right)
 				{
 					p->right = new;
 					new->parent = p;
 					break;
 				}
+				p = p->right;
 			}
 			else
+			{
+				free(new);
 				return (NULL);
+			}
 		}
 	return (new);
 }
