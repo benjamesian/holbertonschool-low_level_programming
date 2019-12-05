@@ -46,6 +46,6 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 		return (0);
 
 	return (_binary_tree_is_bst(tree, tree)
-		&& _binary_tree_is_bst(tree->left, tree->left)
-		&& _binary_tree_is_bst(tree->right, tree->right));
+		&& (tree->left ? binary_tree_is_bst(tree->left) : 1)
+		&& (tree->right ? binary_tree_is_bst(tree->right) : 1));
 }
