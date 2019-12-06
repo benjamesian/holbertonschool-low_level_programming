@@ -58,6 +58,12 @@ int is_left_child(bst_t *node)
 	return (node && node->parent && node == node->parent->left);
 }
 
+/**
+ * get_child - get a child of a node if it exists
+ * @node: bst
+ *
+ * Return: the child or NULL
+ */
 bst_t *get_child(bst_t *node)
 {
 	if (node->left)
@@ -81,19 +87,22 @@ bst_t *bst_remove(bst_t *root, int value)
 		return (root);
 	if (!(node_to_replace->left && node_to_replace->right))
 	{
+		next_node_in_order = get_child(node_to_replace);
+		if (next_node_in_order)
+			next_node_in_order->parent = node_to_replace->parent;
 		if (node_to_replace == root)
-			root = get_child(node_to_replace);
+			root = next_node_in_order;
 		else if (is_left_child(node_to_replace))
-			node_to_replace->parent->left = get_child(node_to_replace);
+			node_to_replace->parent->left = next_node_in_order;
 		else
-			node_to_replace->parent->right = get_child(node_to_replace);
+			node_to_replace->parent->right = next_node_in_order;
 	}
 	else
 	{
 		next_node_in_order = next_in_order(node_to_replace, value);
-		if (is_left_child(next_node_in_order))
+		if (is_left_child(next_node_in_order)) /* next has no left */
 			next_node_in_order->parent->left = next_node_in_order->right;
-		else
+		else /* is direct child of node to replace */
 			next_node_in_order->parent->right = next_node_in_order->right;
 		if (next_node_in_order->right)
 			next_node_in_order->right->parent = next_node_in_order->parent;
