@@ -58,6 +58,13 @@ int is_left_child(bst_t *node)
 	return (node && node->parent && node == node->parent->left);
 }
 
+bst_t *get_child(bst_t *node)
+{
+	if (node->left)
+		return (node->left);
+	return (node->right);
+}
+
 /**
  * bst_remove - remove a node from a bst
  * @root: root node of the tree
@@ -72,18 +79,18 @@ bst_t *bst_remove(bst_t *root, int value)
 	node_to_replace = bst_search(root, value);
 	if (!node_to_replace)
 		return (root);
-	next_node_in_order = next_in_order(node_to_replace, value);
-	if (!next_node_in_order)
+	if (!(node_to_replace->left && node_to_replace->right))
 	{
 		if (node_to_replace == root)
-			root = node_to_replace->left;
+			root = get_child(node_to_replace);
 		else if (is_left_child(node_to_replace))
-			node_to_replace->parent->left = node_to_replace->left;
+			node_to_replace->parent->left = get_child(node_to_replace);
 		else
-			node_to_replace->parent->right = node_to_replace->left;
+			node_to_replace->parent->right = get_child(node_to_replace);
 	}
 	else
 	{
+		next_node_in_order = next_in_order(node_to_replace, value);
 		if (is_left_child(next_node_in_order))
 			next_node_in_order->parent->left = next_node_in_order->right;
 		else
