@@ -1,6 +1,7 @@
 #include "binary_trees.h"
 #include <limits.h>
 
+
 /**
  * bt_height - get raw height of a binary tree
  * @tree: tree to find height of
@@ -81,12 +82,7 @@ int _binary_tree_is_avl(const binary_tree_t *tree)
 	if (!tree)
 		return (1);
 
-	balance = tree->left ?
-		bt_height(tree->left->left) - bt_height(tree->left->right) :
-		0;
-	balance -= tree->right ?
-		bt_height(tree->right->left) - bt_height(tree->right->right) :
-		0;
+	balance = bt_height(tree->left) - bt_height(tree->right);
 	if (balance * balance > 1)
 		return (0);
 
