@@ -23,13 +23,13 @@ bst_t *bst_search(const bst_t *tree, int value)
 }
 
 /**
- * next_in_order - find next highest valued node in order
+ * get_next_in_order_node - find next highest valued node in order
  * @tree: tree to search
  * @value: value which should be less than next nodes value
  *
  * Return: next in-order node
  */
-bst_t *next_in_order(const bst_t *tree, int value)
+bst_t *get_next_in_order_node(const bst_t *tree, int value)
 {
 	const bst_t *next = NULL;
 
@@ -48,17 +48,6 @@ bst_t *next_in_order(const bst_t *tree, int value)
 }
 
 /**
- * is_left_child - check if a node is a left child of another node
- * @node: a node
- *
- * Return: 1 if node is a left child, else 0
- */
-int is_left_child(bst_t *node)
-{
-	return (node && node->parent && node == node->parent->left);
-}
-
-/**
  * get_child - get a child of a node if it exists
  * @node: bst
  *
@@ -72,6 +61,19 @@ bst_t *get_child(bst_t *node)
 }
 
 /**
+ * assign_parent_child - assign a parent's child
+ * @old_child: the original child
+ * @new_child: the new child
+ */
+void assign_parent_child(bst_t *old_child, bst_t *new_child)
+{
+	if (old_child == old_child->parent->left)
+		old_child->parent->left = new_child;
+	else
+		old_child->parent->right = new_child;
+}
+
+/**
  * bst_remove - remove a node from a bst
  * @root: root node of the tree
  * @value: value of node to remove
@@ -80,47 +82,38 @@ bst_t *get_child(bst_t *node)
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *node_to_replace, *next_node_in_order;
+	bst_t *remove, *next;
 
-	node_to_replace = bst_search(root, value);
-	if (!node_to_replace)
+	remove = bst_search(root, value);
+	if (!remove)
 		return (root);
-	if (!(node_to_replace->left && node_to_replace->right))
-	{
-		next_node_in_order = get_child(node_to_replace);
-		if (next_node_in_order)
-			next_node_in_order->parent = node_to_replace->parent;
-		if (node_to_replace == root)
-			root = next_node_in_order;
-		else if (is_left_child(node_to_replace))
-			node_to_replace->parent->left = next_node_in_order;
-		else
-			node_to_replace->parent->right = next_node_in_order;
+	if (!(remove->left && remove->right))
+	{ /* node to replace is not full, simple replacement */
+		next = get_child(remove);
+		if (next)
+			next->parent = remove->parent;
 	}
 	else
-	{
-		next_node_in_order = next_in_order(node_to_replace, value);
-		if (is_left_child(next_node_in_order)) /* next has no left */
-			next_node_in_order->parent->left = next_node_in_order->right;
-		else /* is direct child of node to replace */
-			next_node_in_order->parent->right = next_node_in_order->right;
-		if (next_node_in_order->right)
-			next_node_in_order->right->parent = next_node_in_order->parent;
-		next_node_in_order->left = node_to_replace->left;
-		if (node_to_replace->left)
-			node_to_replace->left->parent = next_node_in_order;
-		next_node_in_order->right = node_to_replace->right;
-		if (node_to_replace->right)
-			node_to_replace->right->parent = next_node_in_order;
-		next_node_in_order->parent = node_to_replace->parent;
-		if (node_to_replace == root)
-			root = next_node_in_order;
-		else if (is_left_child(node_to_replace))
-			next_node_in_order->parent->left = next_node_in_order;
-		else
-			next_node_in_order->parent->right = next_node_in_order;
+	{ /* need to replace with next in-order node (not necessarily a child) */
+		next = get_next_in_order_node(remove, value);
+		if (next == next->parent->left)
+		{ /* next has no left child */
+			next->parent->left = next->right;
+			if (next->right)
+				next->right->parent = next->parent;
+			next->right = remove->right;
+			remove->right->parent = next;
+		}
+		next->left = remove->left;
+		if (next->left)
+			next->left->parent = next;
+		next->parent = remove->parent;
 	}
-	free(node_to_replace);
+	if (remove == root)
+		root = next;
+	else
+		assign_parent_child(remove, next);
+	free(remove);
 	root->parent = NULL;
 	return (root);
 }
