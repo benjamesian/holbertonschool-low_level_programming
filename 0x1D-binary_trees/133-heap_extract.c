@@ -7,14 +7,14 @@
  *
  * Return: size of the tree.
  */
-size_t binary_tree_size(const binary_tree_t *tree)
+size_t _binary_tree_size(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (0);
 
 	return (1 +
-		binary_tree_size(tree->left) +
-		binary_tree_size(tree->right));
+		_binary_tree_size(tree->left) +
+		_binary_tree_size(tree->right));
 }
 
 /**
@@ -75,7 +75,7 @@ int heap_extract(heap_t **root)
 
 	p = *root;
 	out = p->n;
-	size = binary_tree_size(p);
+	size = _binary_tree_size(p);
 	last = find_last(p, size);
 	printf("last is >%d<\n", last->n);
 	if (last != p)
