@@ -87,6 +87,8 @@ int heap_extract(heap_t **root)
 			last->parent->right = NULL;
 		sink(p);
 	}
+	else
+		*root = NULL;
 	free(last);
 	return (out);
 }
