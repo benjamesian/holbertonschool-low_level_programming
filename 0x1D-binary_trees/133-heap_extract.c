@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * binary_tree_size - get the size of a binary tree
+ * _binary_tree_size - get the size of a binary tree
  * @tree: tree to find the size of
  *
  * Return: size of the tree.
