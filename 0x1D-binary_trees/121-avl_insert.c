@@ -145,7 +145,16 @@ avl_t *avl_insert(avl_t **tree, int value)
 				p = binary_tree_rotate_right(p->parent);
 
 			if (a > 1)
-				break;
+			{
+				a = 0;
+				while (p->parent)
+				{
+					a = binary_tree_balance(p->parent);
+					if (a > 1)
+						break;
+					p = p->parent;
+				}
+			}
 		}
 	if (!p->parent)
 		*tree = p;
