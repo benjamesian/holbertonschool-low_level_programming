@@ -82,7 +82,12 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	{
 		if (pq->next->priority - pq->priority > 1)
 		{
-			pq_free(p);
+			while (p)
+			{
+				pq = p;
+				p = p->next;
+				free(pq);
+			}
 			return (0);
 		}
 
