@@ -73,6 +73,8 @@ int heap_extract(heap_t **root)
 	size_t size;
 	int out = 0;
 
+	if (!root || !*root)
+		return (0);
 	p = *root;
 	out = p->n;
 	size = _binary_tree_size(p);
