@@ -1,46 +1,35 @@
 #include "binary_trees.h"
 
 /**
- * max - return max value
- * @a: a value
- * @b: another value
+ * binary_tree_size - get the size of a binary tree
+ * @tree: tree to find the size of
  *
- * Return: The maximum of a and b
+ * Return: size of the tree.
  */
-size_t max(size_t a, size_t b)
-{
-	return (a > b ? a : b);
-}
-
-/**
- * _binary_tree_height - get raw height of a binary tree
- * @tree: tree to find height of
- *
- * Return: the height of the tree.
- */
-size_t _binary_tree_height(const binary_tree_t *tree)
+size_t binary_tree_size(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (0);
 
-	return (1 + max(
-		_binary_tree_height(tree->left),
-		_binary_tree_height(tree->right)));
+	return (1 +
+		binary_tree_size(tree->left) +
+		binary_tree_size(tree->right));
 }
 
 /**
- * binary_tree_balance - Check if a binary tree is balanced.
- * @tree: tree to inspect
+ * find_next_parent - find next node that can hold a child
+ * @root: root of the tree
+ * @size: size of the tree
  *
- * Return: balance factor of a binary tree
+ * Return: next parent
  */
-int binary_tree_balance(const binary_tree_t *tree)
+heap_t *find_next_parent(heap_t *root, size_t size)
 {
-	if (!tree)
-		return (0);
-
-	return (_binary_tree_height(tree->left) -
-		_binary_tree_height(tree->right));
+	if (size < 2)
+		return (root);
+	if (size % 2)
+		return (find_next_parent(root, size / 2)->right);
+	return (find_next_parent(root, size / 2)->left);
 }
 
 /**
@@ -64,30 +53,22 @@ heap_t *heap_insert(heap_t **root, int value)
 	if (!p)
 		*root = new;
 	else
-		while (1)
-		{
-			if (!p->left)
-			{
-				p->left = new;
-				new->parent = p;
-			}
-			else if (!p->right)
-			{
-				p->right = new;
-				new->parent = p;
-			}
-			else if (binary_tree_balance(p) < 0 && binary_tree_balance(p->left) == 0)
-				p = p->right;
-			else
-				p = p->left;
-		}
-	while (p->parent && p->parent->n < p->n)
 	{
-		temp = p->parent->n;
-		p->parent->n = p->n;
-		p->n = temp;
-		p = p->parent;
-	}
+		p = find_next_parent(p, (binary_tree_size(p) + 1) / 2);
+		new->parent = p;
+		if (p->left)
+			p->right = new;
+		else
+			p->left = new;
 
+		p = new;
+		while (p->parent && p->parent->n < p->n)
+		{
+			temp = p->n;
+			p->n = p->parent->n;
+			p->parent->n = temp;
+			p = p->parent;
+		}
+	}
 	return (new);
 }
