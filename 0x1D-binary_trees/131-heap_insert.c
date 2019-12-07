@@ -51,24 +51,24 @@ heap_t *heap_insert(heap_t **root, int value)
 		return (NULL);
 	p = *root;
 	if (!p)
-		*root = new;
-	else
 	{
-		p = find_next_parent(p, (binary_tree_size(p) + 1) / 2);
-		new->parent = p;
-		if (p->left)
-			p->right = new;
-		else
-			p->left = new;
+		*root = new;
+		return (new);
+	}
+	p = find_next_parent(p, (binary_tree_size(p) + 1) / 2);
+	new->parent = p;
+	if (p->left)
+		p->right = new;
+	else
+		p->left = new;
 
-		p = new;
-		while (p->parent && p->parent->n < p->n)
-		{
-			temp = p->n;
-			p->n = p->parent->n;
-			p->parent->n = temp;
-			p = p->parent;
-		}
+	p = new;
+	while (p->parent && p->parent->n < p->n)
+	{
+		temp = p->n;
+		p->n = p->parent->n;
+		p->parent->n = temp;
+		p = p->parent;
 	}
 	return (p);
 }
