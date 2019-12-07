@@ -9,15 +9,14 @@
  */
 int *heap_to_sorted_array(heap_t *heap, size_t *size)
 {
-	heap_t *node;
-	int *array;
+	int *array, value;
 
 	array = malloc(sizeof(*array) * (*size));
 	if (!array)
 		return (NULL);
-	*size--;
-	while ((node = heap_extract(&heap)))
-		*array++ = node->n;
+	*size = *size - 1;
+	while ((value = heap_extract(&heap)))
+		*array++ = value;
 
 	return (array);
 }
