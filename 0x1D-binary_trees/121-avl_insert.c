@@ -123,7 +123,7 @@ avl_t *avl_insert(avl_t **tree, int value)
 	avl_t *new, *p;
 	int a;
 
-	if (bst_search(*tree, value))
+	if (!tree || bst_search(*tree, value))
 		return (NULL);
 	new = bst_insert(tree, value);
 	if (!new)
