@@ -48,18 +48,6 @@ pq_t *pq_add(pq_t **pq, size_t priority, int value)
 }
 
 /**
- * pq_free - free a priority queue
- * @pq: queue to free
- */
-void pq_free(pq_t *pq)
-{
-	if (!pq)
-		return;
-	pq_free(pq->next);
-	free(pq);
-}
-
-/**
  * build_pq - build a priority queue for easy level order traversal
  * @tree: binary tree to traverse
  * @pq: priority queue to construct
@@ -101,6 +89,11 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		pq = pq->next;
 	}
 
-	pq_free(p);
+	while (p)
+	{
+		pq = p;
+		p = p->next;
+		free(pq);
+	}
 	return (1);
 }
