@@ -87,13 +87,7 @@ bst_t *bst_remove(bst_t *root, int value)
 	remove = bst_search(root, value);
 	if (!remove)
 		return (root);
-	if (!(remove->left && remove->right))
-	{ /* node to replace is not full, simple replacement */
-		next = get_child(remove);
-		if (next)
-			next->parent = remove->parent;
-	}
-	else
+	if (remove->left && remove->right)
 	{ /* need to replace with next in-order node (not necessarily a child) */
 		next = get_next_in_order_node(remove, value);
 		if (next == next->parent->left)
@@ -102,13 +96,16 @@ bst_t *bst_remove(bst_t *root, int value)
 			if (next->right)
 				next->right->parent = next->parent;
 			next->right = remove->right;
-			remove->right->parent = next;
+			next->right->parent = next;
 		}
 		next->left = remove->left;
 		if (next->left)
 			next->left->parent = next;
-		next->parent = remove->parent;
 	}
+	else
+		next = get_child(remove);
+	if (next)
+		next->parent = remove->parent;
 	if (remove == root)
 		root = next;
 	else
