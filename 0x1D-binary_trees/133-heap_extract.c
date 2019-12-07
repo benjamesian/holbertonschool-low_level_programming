@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
 /**
  * _binary_tree_size - get the size of a binary tree
@@ -79,7 +78,6 @@ int heap_extract(heap_t **root)
 	out = p->n;
 	size = _binary_tree_size(p);
 	last = find_last(p, size);
-	printf("last is >%d<\n", last->n);
 	if (last != p)
 	{
 		p->n = last->n;
