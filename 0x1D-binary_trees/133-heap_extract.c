@@ -43,9 +43,9 @@ void sink(heap_t *root)
 
 	if (root->left && root->right)
 	{
-		if (root->left->n > root->right->n)
+		if (root->left->n > root->right->n && root->n < root->left->n)
 			next = root->left;
-		else
+		else if (root->n < root->right->n)
 			next = root->right;
 	}
 	else if (root->left && root->n < root->left->n)
