@@ -2,8 +2,8 @@
 #include <math.h>
 
 /**
- * jump_search - jump search algorithm
- * @array: array to search
+ * jump_list - jump search algorithm
+ * @list: array to search
  * @size: size of the array
  * @value: value to search for
  *
@@ -16,7 +16,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	if (!list)
 		return (NULL);
-	
+
 	while (b->next && b->n < value)
 	{
 		a = b;
@@ -25,7 +25,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 		printf("Value checked at index [%lu] = [%d]\n", b->index, b->n);
 	}
-	
+
 	printf("Value found between indexes [%lu] and [%lu]\n", a->index, b->index);
 	while (a->n < value)
 	{
