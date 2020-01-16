@@ -12,7 +12,7 @@ int interpolation_search(int *array, size_t size, int value)
 {
 	size_t l = 0, h = size - 1;
 
-	while (l < h)
+	while (l < size)
 	{
 		l += (((double)(h - l) / (array[h] - array[l])) * (value - array[l]));
 		if (l < size)
